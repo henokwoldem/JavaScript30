@@ -38,28 +38,50 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-
+    //filter loops through array checks for if condition, and if it returns a truthy value it adds it to an array under the variable name
+    const fifteen = inventors.filter(inventor => inventor.year <= 1599 && inventor.year >= 1500);
+    console.log(fifteen)
+    
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
-
+    //for each inventor in the inventor array return something about it. You end up with the same amount of elemnts.  
+    const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`); 
+    console.log(fullNames) 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-
+    const ordered = inventors.sort((a,b) => a.year - b.year)
+    console.log(ordered);
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
-
+    const ages = inventors.reduce((total,inventor) => {
+      return total + (inventor.passed - inventor.year);
+    },0)
+    console.log(ages)
     // 5. Sort the inventors by years lived
-
+    const yearsLived = inventors.sort((a,b) => (a.passed - a.year) - (b.passed - b.year));
+    console.log(yearsLived);
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-
+    const alphabetically = inventors.sort((a,b) => a.last.localeCompare (b.last))
+    console.log(alphabetically);
     // 8. Reduce Exercise
     // Sum up the instances of each of these
-    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ]
+    let carCount = data.reduce((obj,carType) => 
+    {
+      if(!obj[carType])
+      {
+        obj[carType] = 0;
+      }
+      obj[carType]++
+      return obj;
+
+    },{});
+    console.log(carCount);
 
   </script>
 </body>
